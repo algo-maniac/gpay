@@ -12,11 +12,11 @@ exports.signup = async (req, res) => {
   try {
     // Destructure fields from the request body
     const {
-      firstName,
-      lastName,
+      userName,
       email,
       bankAccountNo,
-      contact,
+      upiNumber,
+      upiId,
       password,
       confirmPassword,
       accountType,
@@ -24,11 +24,11 @@ exports.signup = async (req, res) => {
     } = req.body
     // Check if All Details are there or not
     if (
-      !firstName ||
-      !lastName ||
+      !userName ||
       !email ||
       !bankAccountNo ||
-      !contact ||
+      !upiNumber ||
+      !upiId ||
       !password ||
       !confirmPassword ||
       !accountType ||
@@ -79,13 +79,13 @@ exports.signup = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10)
 
     const user = await User.create({
-      firstName,
-      lastName,
+      userName,
       email,
       bankAccountNo,
       password: hashedPassword,
       accountType: accountType,
-      contact,
+      upiId,
+      upiNumber,
     })
 
     return res.status(200).json({
