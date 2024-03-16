@@ -106,10 +106,10 @@ exports.signup = async (req, res) => {
 exports.login = async (req, res) => {
   try {
     // Get email and password from request body
-    const { contact, email, password } = req.body
+    const { upiNumber, email, password } = req.body
 
     // Check if email or password is missing
-    if (!contact || !email || !password) {
+    if (!upiNumber || !email || !password) {
       // Return 400 Bad Request status code with error message
       return res.status(400).json({
         success: false,
@@ -118,7 +118,7 @@ exports.login = async (req, res) => {
     }
 
     // Find user with provided email
-    const user = await User.findOne({ email ,contact});
+    const user = await User.findOne({ email ,upiNumber});
 
     // If user not found with provided email
     if (!user) {
