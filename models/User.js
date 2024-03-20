@@ -1,7 +1,8 @@
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
 
-const userSchema = new mongoose.Schema({
-    userName:{
+const userSchema = new mongoose.Schema(
+  {
+    userName: {
       type: String,
       required: true,
     },
@@ -22,7 +23,7 @@ const userSchema = new mongoose.Schema({
       type: Number,
       required: true,
     },
-    upiId:{
+    upiId: {
       type: String,
       required: true,
     },
@@ -37,10 +38,8 @@ const userSchema = new mongoose.Schema({
     resetPasswordExpires: {
       type: Date,
     },
-    // Add timestamps for when the document is created and last modified
   },
   { timestamps: true }
-)
+);
 
-// Export the Mongoose model for the user schema, using the name "user"
-module.exports = mongoose.model("user", userSchema)
+module.exports = mongoose.model("user", userSchema);
